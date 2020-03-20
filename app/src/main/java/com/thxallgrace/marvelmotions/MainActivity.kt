@@ -1,12 +1,20 @@
 package com.thxallgrace.marvelmotions
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.thxallgrace.marvelmotions.base.DatabindingActivity
+import com.thxallgrace.marvelmotions.databinding.ActivityMainBinding
+import com.thxallgrace.marvelmotions.view.ui.main.MainPagerAdapter
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DatabindingActivity() {
+
+    private val binding : ActivityMainBinding by binding(R.layout.activity_main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding.apply {
+            pagerAdapter = MainPagerAdapter(supportFragmentManager)
+            navigation = mainBottomNavigation
+        }
     }
 }
